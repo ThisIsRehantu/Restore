@@ -1,8 +1,13 @@
 {
   "build": {
-    "root": "becraft"
+    "env": {
+      "COMPOSER_ALLOW_SUPERUSER": "1"
+    },
+    "command": "composer install --no-dev --optimize-autoloader",
+    "cwd": "becraft"
   },
   "deploy": {
-    "startCommand": "php artisan serve --host 0.0.0.0 --port $PORT"
+    "command": "php artisan serve --host 0.0.0.0 --port $PORT",
+    "cwd": "becraft"
   }
 }
