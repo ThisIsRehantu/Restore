@@ -1,6 +1,13 @@
 {
   "build": {
     "builder": "nixpacks",
+    "nixpacksConfig": {
+      "phases": {
+        "setup": {
+          "nixPkgs": ["php81", "composer"]
+        }
+      }
+    },
     "buildCommand": "cd becraft && composer install --no-dev --optimize-autoloader"
   },
   "deploy": {
