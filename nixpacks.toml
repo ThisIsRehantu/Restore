@@ -4,8 +4,9 @@ nixPkgs = ["php81"]
 [phases.install]
 cmds = [
   "curl -sS https://getcomposer.org/installer | php",
-  "mv composer.phar /usr/local/bin/composer",
-  "cd becraft && composer install --no-dev --optimize-autoloader"
+  "chmod +x composer.phar",
+  "mv composer.phar /usr/bin/composer",
+  "cd becraft && /usr/bin/composer install --no-dev --optimize-autoloader"
 ]
 
 [start]
