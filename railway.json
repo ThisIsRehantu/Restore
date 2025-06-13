@@ -1,7 +1,7 @@
 {
   "build": {
     "builder": "nixpacks",
-    "buildCommand": "cd becraft && composer install"
+    "buildCommand": "cd becraft && composer install --no-dev --optimize-autoloader"
   },
   "deploy": {
     "startCommand": "php -S 0.0.0.0:$PORT -t becraft/public"
