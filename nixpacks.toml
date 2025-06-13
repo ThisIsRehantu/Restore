@@ -1,0 +1,8 @@
+[phases.setup]
+packages = ["php", "php-mbstring", "php-xml", "php-pdo", "composer"]
+
+[phases.build]
+commands = ["cd becraft", "composer install"]
+
+[phases.start]
+command = "php -S 0.0.0.0:$PORT -t becraft/public"
