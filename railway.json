@@ -1,14 +1,7 @@
 {
   "build": {
     "builder": "nixpacks",
-    "nixpacksConfig": {
-      "phases": {
-        "setup": {
-          "nixPkgs": ["php81", "composer"]
-        }
-      }
-    },
-    "buildCommand": "cd becraft && composer install --no-dev --optimize-autoloader"
+    "buildCommand": "cd becraft && composer install"
   },
   "deploy": {
     "startCommand": "php -S 0.0.0.0:$PORT -t becraft/public"
