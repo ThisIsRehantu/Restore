@@ -1,9 +1,5 @@
 {
   "build": {
-    "builder": "nixpacks",
-    "buildCommand": "cd becraft && composer install"
-  },
-  "deploy": {
-    "startCommand": "php -S 0.0.0.0:$PORT -t becraft/public"
+    "builder": "nixpacks"
   }
 }
