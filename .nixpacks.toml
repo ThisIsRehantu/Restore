@@ -1,2 +1,10 @@
 [phases.setup]
-nixPkgs = ['php81', 'composer']
+nixPkgs = ['php81', 'composer', 'nodejs', 'npm']
+
+[phases.build]
+cmds = [
+  'cd becraft && composer install --no-dev --optimize-autoloader'
+]
+
+[start]
+cmd = "php -S 0.0.0.0:$PORT -t becraft/public"
