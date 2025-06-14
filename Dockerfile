@@ -1,26 +1,19 @@
-# Gunakan image Apache + PHP
 FROM php:8.1-apache
 
-# Install dependensi PHP tambahan
-RUN docker-php-ext-install pdo pdo_mysql
+RUN apt-get update && apt-get install -y \ 
+    libfreetype6-dev libjpeg62-turbo-dev libpng-dev \ 
+    zip unzip curl git     && docker-php-ext-configure gd --with-freetype --with-jpeg     && docker-php-ext-install gd pdo pdo_mysql
 
-# Aktifkan mod_rewrite
 RUN a2enmod rewrite
 
-# Salin semua file project
+WORKDIR /var/www/html
+
 COPY ./becraft /var/www/html/
-
-# Set working dir
-WORKDIR /var/www/html/
-
-# Salin konfigurasi Apache
-COPY ./apache.conf /etc/apache2/sites-enabled/000-default.conf
-
-# Install Composer
+COPY apache.conf /etc/apache2/sites-enabled/000-default.conf
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Jalankan Composer
-RUN composer install --no-dev --optimize-autoloader &&     php artisan config:cache &&     php artisan route:cache &&     php artisan view:cache
+RUN composer install --no-dev --optimize-autoloader
 
-# Set permission
-RUN chown -R www-data:www-data /var/www/html     && chmod -R 755 /var/www/html/storage
+RUN php artisan config:cache &&     php artisan route:cache &&     php artisan view:cache
+
+RUN chown -R www-data:www-data storage bootstrap/cache &&     chmod -R 775 storage bootstrap/cache
