@@ -14,8 +14,7 @@ RUN a2enmod rewrite
 WORKDIR /var/www/html
 
 # Salin seluruh source code Laravel ke dalam container
-COPY ./becraft /var/www/html/.env
-
+COPY ./becraft/.env /var/www/html/.env
 # Salin file konfigurasi Apache
 COPY apache.conf /etc/apache2/sites-enabled/000-default.conf
 
