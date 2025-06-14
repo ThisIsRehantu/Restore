@@ -4,6 +4,6 @@
     "buildCommand": "cd becraft && composer install --no-dev --optimize-autoloader && php artisan config:cache"
   },
   "deploy": {
-    "startCommand": "cd becraft && php -d variables_order=EGPCS -S 0.0.0.0:$PORT -t public"
+    "startCommand": "cd becraft && php -S 0.0.0.0:$PORT public/index.php"
   }
 }
