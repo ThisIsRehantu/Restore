@@ -26,10 +26,7 @@ COPY apache.conf /etc/apache2/sites-enabled/000-default.conf
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Install dependencies & cache config
-RUN composer install --no-dev --optimize-autoloader && \
-    php artisan config:cache && \
-    php artisan route:cache && \
-    php artisan view:cache
+RUN composer install --no-dev --optimize-autoloader
 
 # Set correct permissions
 RUN chown -R www-data:www-data storage bootstrap/cache && \
