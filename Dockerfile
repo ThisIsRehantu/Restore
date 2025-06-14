@@ -7,16 +7,23 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd pdo pdo_mysql
 
-# Aktifkan Apache mod_rewrite
+# Aktifkan mod_rewrite
 RUN a2enmod rewrite
 
-# Set direktori kerja Laravel
+# Set working directory
 WORKDIR /var/www/html
 
-# Salin seluruh source code Laravel ke dalam container
+# Salin project Laravel ke subfolder becraft
+COPY ./becraft /var/www/html/becraft
+
+# Salin file .env ke tempat yang benar
 COPY ./becraft/.env /var/www/html/becraft/.env
-# Salin file konfigurasi Apache
+
+# Salin Apache config
 COPY apache.conf /etc/apache2/sites-enabled/000-default.conf
 
-# Salin Composer dari image composer terbaru
+# Salin composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# (opsional) Composer install — boleh kamu skip dan pakai CMD
+# RUN composer install --no-dev --optimize-autoloader
