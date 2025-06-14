@@ -10,4 +10,4 @@ cmds = [
 ]
 
 [start]
-cmd = "cd becraft && php -S 0.0.0.0:$PORT public/index.php"
+cmd = "cd becraft && php -S 0.0.0.0:$PORT server.php"
