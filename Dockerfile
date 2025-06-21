@@ -25,15 +25,6 @@ COPY apache.conf /etc/apache2/sites-available/000-default.conf
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# Copy file SQL ke dalam container
-COPY database.sql /tmp/database.sql
-
-RUN apt-get update && apt-get install -y default-mysql-client && \
-    mysql --default-character-set=utf8mb4 \
-    -h switchback.proxy.rlwy.net -P 17241 \
-    -u root -nffmsRqhShGhOeLztWETerCxprsBaibA \
-    railway < /tmp/database.sql || echo "Gagal insert admin"
     
 # Jalankan perintah Laravel
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader && \
