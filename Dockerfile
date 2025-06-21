@@ -27,6 +27,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Jalankan perintah Laravel
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader && \
+    php artisan db:seed && \
     php artisan config:clear && \
     php artisan route:clear && \
     php artisan view:clear && \
