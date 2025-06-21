@@ -60,6 +60,11 @@ Route::get('/updatepembelian', function(){
     Illuminate\Support\Facades\Artisan::call("updatePembelian");
 });
 
+Route::get('/write-log', function () {
+    file_put_contents(storage_path('logs/manual.log'), "Hello World\n", FILE_APPEND);
+    return 'Log written!';
+});
+
 Route::get('/updatepesanan', function(){
     Illuminate\Support\Facades\Artisan::call("updatePesanan");
 });
