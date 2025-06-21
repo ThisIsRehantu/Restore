@@ -20,12 +20,9 @@
     RewriteRule ^ index.php [L]
 </IfModule>
 
-RewriteCond %{HTTPS} !on
-RewriteRule ^.*$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
 <Files 403.shtml>
 order allow,deny
 allow from all
 </Files>
 
-deny from 103.28.116.36
+
